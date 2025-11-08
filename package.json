@@ -7,7 +7,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "p:g": "pnpm dlx prisma generate",
+    "p:m": "pnpm dlx prisma migrate dev",
+    "p:r": "pnpm dlx prisma migrate reset"
   },
   "dependencies": {
     "@prisma/client": "^6.19.0",
