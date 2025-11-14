@@ -5,6 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "mprocs": "npm run dev",
+    "dev:all": "mprocs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -77,6 +79,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.0.1",
+    "mprocs": "^0.7.3",
     "prisma": "^6.19.0",
     "tailwindcss": "^4",
     "tsx": "^4.20.6",
