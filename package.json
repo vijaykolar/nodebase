@@ -10,9 +10,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "p:g": "pnpm dlx prisma generate",
-    "p:m": "pnpm dlx prisma migrate dev",
-    "p:r": "pnpm dlx prisma migrate reset"
+    "p:g": "npx dlx prisma generate",
+    "p:m": "npx dlx prisma migrate dev",
+    "p:r": "npx dlx prisma migrate reset",
+    "p:s": "npx prisma studio"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

@@ -32,23 +32,23 @@ import { Input } from "@/components/ui/input";
 // import {authClient} from '@/lib/auth-client'
 import { cn } from "@/lib/utils";
 
-const loginSchema = z.object({
+const signupSchema = z.object({
   email: z.email("Please enter your email"),
   password: z.string().min(1, "Please enter password"),
 });
 
-type LoginFormValues = z.infer<typeof loginSchema>;
+type SignupFormValues = z.infer<typeof signupSchema>;
 
-export function LoginForm() {
+export function SignupForm() {
   const router = useRouter();
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<SignupFormValues>({
+    resolver: zodResolver(signupSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
-  const onSubmit = (values: LoginFormValues) => {
+  const onSubmit = (values: SignupFormValues) => {
     console.log(values);
   };
 
@@ -58,8 +58,8 @@ export function LoginForm() {
     <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle>Welcome back</CardTitle>
-          <CardDescription>Login to continue</CardDescription>
+          <CardTitle>Get Started</CardTitle>
+          <CardDescription>Create your account to get started</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -111,13 +111,13 @@ export function LoginForm() {
                     )}
                   />
                   <Button className="w-full" type="submit" disabled={isPending}>
-                    Login
+                    Signup
                   </Button>
                 </div>
                 <div className="text-center text-sm">
-                  Don&apos;t have an account?{" "}
-                  <Link href="/signup" className="underline underline-offset-4">
-                    Sign up
+                  Already have an account?{" "}
+                  <Link href="/login" className="underline underline-offset-4">
+                    Login
                   </Link>
                 </div>
               </div>
