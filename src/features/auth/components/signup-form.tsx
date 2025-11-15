@@ -31,11 +31,18 @@ import {
 import { Input } from "@/components/ui/input";
 // import {authClient} from '@/lib/auth-client'
 import { cn } from "@/lib/utils";
+import { authClient } from "@/lib/auth-client";
 
-const signupSchema = z.object({
-  email: z.email("Please enter your email"),
-  password: z.string().min(1, "Please enter password"),
-});
+const signupSchema = z
+  .object({
+    email: z.email("Please enter your email"),
+    password: z.string().min(1, "Please enter password"),
+    confirmPassword: z.string("Please confirm"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Password must be same",
+    path: ["confirmPassword"],
+  });
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 
@@ -46,10 +53,26 @@ export function SignupForm() {
     defaultValues: {
       email: "",
       password: "",
+      confirmPassword: "",
     },
   });
-  const onSubmit = (values: SignupFormValues) => {
-    console.log(values);
+  const onSubmit = async (values: SignupFormValues) => {
+    await authClient.signUp.email(
+      {
+        name: values.email,
+        password: values.password,
+        callbackURL: "/",
+        email: values.email,
+      },
+      {
+        onSuccess: () => {
+          router.push("/");
+        },
+        onError: (ctx) => {
+          toast.error(ctx.error.message);
+        },
+      }
+    );
   };
 
   const isPending = form.formState.isSubmitting;
@@ -103,6 +126,19 @@ export function SignupForm() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Password</FormLabel>
+                        <FormControl>
+                          <Input type="password" {...field} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    name="confirmPassword"
+                    control={form.control}
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Confirm Password</FormLabel>
                         <FormControl>
                           <Input type="password" {...field} />
                         </FormControl>

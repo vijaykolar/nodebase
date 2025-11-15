@@ -5,6 +5,7 @@ import prisma from "./db";
 export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
+    autoSignIn: true,
   },
   // emailVerification: {
   //   sendOnSignUp: true,
