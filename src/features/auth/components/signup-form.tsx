@@ -81,8 +81,12 @@ export function SignupForm() {
     <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle>Get Started</CardTitle>
-          <CardDescription>Create your account to get started</CardDescription>
+          <CardTitle className="text-2xl font-bold">
+            Create your account
+          </CardTitle>
+          <CardDescription>
+            Enter your email below to create your account
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -95,6 +99,12 @@ export function SignupForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      src="/logos/github.svg"
+                      alt="Github Logo"
+                      width={20}
+                      height={20}
+                    />
                     Continue with Github
                   </Button>
                   <Button
@@ -103,6 +113,12 @@ export function SignupForm() {
                     type="button"
                     disabled={isPending}
                   >
+                    <Image
+                      src="/logos/google.svg"
+                      alt="Google Logo"
+                      width={20}
+                      height={20}
+                    />
                     Continue with Google
                   </Button>
                 </div>
@@ -114,7 +130,11 @@ export function SignupForm() {
                       <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                          <Input type="email" {...field} />
+                          <Input
+                            placeholder="m@example.com"
+                            type="email"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -147,7 +167,7 @@ export function SignupForm() {
                     )}
                   />
                   <Button className="w-full" type="submit" disabled={isPending}>
-                    Signup
+                    Sign Up
                   </Button>
                 </div>
                 <div className="text-center text-sm">
